@@ -5,15 +5,16 @@ import random #this will be used for randomly selecting letters
 import sys
 
 numOfDownPresses = [1, 2, 3, 4, 5, 6]
+processCounter = 1
 
 print("Program starting up.")
-time.sleep(2)
+time.sleep(3)
 print("Your cursor position is being saved, place it where you want the automation to start.")
 
 heldPosition = pyautogui.position() #holds in a variable where you wanted it
 print(heldPosition)
 
-promptChoice = input("look at the current position, is that where you want it to start? (Y/N): ")
+promptChoice = input("Look at the current position, is that where you want it to start? (Y/N): ")
 
 if promptChoice.lower() == "y": #continue as normal if yes
     pyautogui.click(heldPosition)
@@ -23,6 +24,8 @@ else:
 time.sleep(5) #wait for edge to open up
 
 for i in range(0, 30): #press backspace, then any key on the alphabet, then another random key on the alphabet, then press down a few times, then press enter
+    print("Loop has executed", processCounter, "times.")
+
     pyautogui.hotkey('ctrl', 'e')  #ctrl e opens the search bar
 
     pyautogui.press('backspace')
@@ -43,18 +46,8 @@ for i in range(0, 30): #press backspace, then any key on the alphabet, then anot
         
     pyautogui.press('enter')
     
-    time.sleep(random.random()*5) #waiting between each search
+    time.sleep(random.random()*10) #waiting between each search
+    
+    processCounter += 1
 
 print("Program is done.")
-        
-    
-    
-    
-    
-    
-    
-
-#maybe i can use like random function to choose between letters a-z for a bing search
-#have it automate pressing the start button and typing in microsoft edge
-#then it can macro press like ctrl e and then start typing stuff to search and then ctrl e again and keeps looping
-
