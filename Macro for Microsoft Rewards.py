@@ -6,36 +6,24 @@ import sys
 
 numOfDownPresses = [1, 2, 3, 4, 5, 6]
 
-print("yo wassup")
-#userInput = input("give me some kind of user input")
+print("Program starting up.")
 time.sleep(2)
-print("after 2 seconds")
+print("Your cursor position is being saved, place it where you want the automation to start.")
 
-heldPosition = pyautogui.position()
+heldPosition = pyautogui.position() #holds in a variable where you wanted it
 print(heldPosition)
 
-#pyautogui.click(685,1045) #this will click my file explorer on the vertical monitor setup
+promptChoice = input("look at the current position, is that where you want it to start? (Y/N): ")
 
-#pyautogui.click(612, 1049) #this will click microsoft edge on the vertical monitor setup
-
-
-promptChoice = input("look at the current position, is that where you want it to start? (Y/N)")
-
-if promptChoice == "Y" or promptChoice == "y":
+if promptChoice.lower() == "y": #continue as normal if yes
     pyautogui.click(heldPosition)
 else:
-    sys.exit()
+    sys.exit() #stop program overall if no
 
 time.sleep(5) #wait for edge to open up
 
-#then press backspace, then any key on the alphabet, then another random key on the alphabet, then press down twice, then press enter
-
-for i in range(0, 30):
+for i in range(0, 30): #press backspace, then any key on the alphabet, then another random key on the alphabet, then press down a few times, then press enter
     pyautogui.hotkey('ctrl', 'e')  #ctrl e opens the search bar
-    
-    #equivalent method is do the hotkey by simulating pressing the buttons down
-    #with pyautogui.hold('ctrl'): #press the ctrl key down
-    #    pyautogui.press('e') 
 
     pyautogui.press('backspace')
 
@@ -44,9 +32,9 @@ for i in range(0, 30):
     randomLetter = random.choice(string.ascii_letters) #choose a random letter
     pyautogui.press(randomLetter) #type the random letter
     
-    time.sleep(random.random()*3) #wait a little but in random times to avoid being spotted
+    time.sleep(random.random()*2) #wait a little but in random times to avoid being spotted
     
-    randomLetter = random.choice(string.ascii_letters) #again
+    randomLetter = random.choice(string.ascii_letters) #choose random letter again
     pyautogui.press(randomLetter)
     
     for i in range(0, random.choice(numOfDownPresses)): #avoiding bot detection for like how many search results down we go
@@ -55,7 +43,9 @@ for i in range(0, 30):
         
     pyautogui.press('enter')
     
-    time.sleep(random.random()*5)
+    time.sleep(random.random()*5) #waiting between each search
+
+print("Program is done.")
         
     
     
